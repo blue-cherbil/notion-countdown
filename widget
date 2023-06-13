@@ -1,0 +1,33 @@
+<div id="countdown">
+  <p id="days"></p>
+  <p id="hours"></p>
+  <p id="minutes"></p>
+  <p id="seconds"></p>
+</div>
+
+<script>
+// Set the countdown date (YYYY-MM-DD format)
+const countdownDate = '2025-04-19';
+
+// Function to calculate the remaining time
+function calculateTimeRemaining() {
+  const currentTime = new Date().getTime();
+  const targetDate = new Date(countdownDate).getTime();
+  const timeRemaining = targetDate - currentTime;
+
+  // Calculate days, hours, minutes, and seconds
+  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+  // Display the countdown in the Notion widget
+  document.getElementById('days').textContent = `${days} days`;
+  document.getElementById('hours').textContent = `${hours} hours`;
+  document.getElementById('minutes').textContent = `${minutes} minutes`;
+  document.getElementById('seconds').textContent = `${seconds} seconds`;
+}
+
+// Update the countdown every second
+setInterval(calculateTimeRemaining, 1000);
+</script>
